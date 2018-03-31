@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<style>
+    h3{
+font-size: 3em;
+color: #f78e7e;
+font-family: 'Open Sans', sans-serif;
+font-weight: 500;
+letter-spacing: 5px;
+text-align: center;
+text-transform: uppercase;
+margin-bottom: 30px;
+    }
+</style>
+<img src="" alt="">
+<div class="container-fluid">
+    <h3 class="text-center">Desempenho do Academico <br /><strong>{{academico}}</strong></h3>
+        <div class="row">
+            <div class="col-2 col-md-2"></div>
+                    <div class="col-4 col-md-4">
+                <h4 class="text-center">Respostas certas</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nº</th>
+                            <th class="text-center">Respostas</th>
+                            <th class="text-center">Periodo Avaliativo</t>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {%for value in questoes%}
+                    <tr>
+                        <td class="text-center">{{value.nu_questao}}</td>
+                        <td class="text-center"><strong>{{ value.res_questao }}</strong></td>
+                        <td class="text-center"><strong>{{ value.no_periodo_avaliativo }}</strong></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+                </table>
+            </div>
+            <div class="col-4 col-md-4">
+                <h4 class="text-center">Gabarito Academico</h4>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Nº</th>
+                                <th class="text-center">Respostas</th>
+                                <th class="text-center">Periodo Avaliativo</t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {%for value in resacademico%}
+                        <tr class="{{value.erro}}">
+                            <td class="text-center">{{value.nu_questao}}</td>
+                            <td class="text-center"><strong>{{ value.res_questao }}</strong></td>
+                            <td class="text-center"><strong>{{ value.no_periodo_avaliativo }}</strong></td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                    </table>
+                </div>
+            <div class="col-2 col-md-2"></div>
+        </div>       
+    </div>
+</div>

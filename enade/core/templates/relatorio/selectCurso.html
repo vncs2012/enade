@@ -1,0 +1,6 @@
+<select name="cd_curso" class="cd_curso"  id="searchbar">
+    <option value='' disabled selected>Selecione o curso</option>
+    {% for value in curso%}
+    <option value='{{value.cd_curso}}'>{{value.no_curso}}</option>
+    {%endfor%}
+</select>

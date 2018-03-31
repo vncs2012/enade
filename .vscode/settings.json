@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "${workspaceFolder}/simulado/bin/python",
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        "./enade",
+        "-p",
+        "*test.py"
+    ],
+    "python.unitTest.unittestEnabled": true,
+    "python.linting.pylintEnabled": false
+}

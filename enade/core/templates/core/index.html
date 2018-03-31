@@ -1,0 +1,226 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Correção de Simulado Enade</title>
+<!-- Meta tag Keywords -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Bank_lock  web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web Designs" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--// Meta tag Keywords -->
+
+<!-- css files -->
+<link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}"> <!-- Bootstrap-Core-CSS -->
+<link rel="stylesheet" href="{% static "core/css/style.css" %}" type="text/css" media="all" /> <!-- Style-CSS --> 
+<link rel="stylesheet" href="{% static "core/css/font-awesome.css" %}"> <!-- Font-Awesome-Icons-CSS -->
+<!-- //css files --> 
+
+</head>
+<body>
+
+<!-- Slider -->
+<div class="slider" id="home">
+	<div class="callbacks_container">
+		<ul class="rslides" id="slider">
+			<li>
+				<div class="w3layouts-banner-top w3layouts-banner-top1">
+					<div class="banner-dott">
+					<div class="container">
+						<div class="slider-info">
+							<div class="col-md-8  slider-info-txt">
+								<h2>Vamos ver suas notas pequeno Gafanhoto</h2>
+							</div>
+							<div class="col-md-4">
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="w3layouts-banner-top">
+					<div class="banner-dott">
+					<div class="container">
+						<div class="slider-info">
+							<div class="col-md-8 slider-info-txt">
+								<h3>Não chore amigo vai dar tudo certo</h3>	
+							</div>
+							<div class="col-md-4">
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="w3layouts-banner-top w3layouts-banner-top3">
+					<div class="banner-dott">
+					<div class="container">
+						<div class="slider-info">
+							<div class="col-md-8 slider-info-txt">
+								<h3>Pequenos erros Grandes resposabilidade</h3>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+	<div class="main add" style="bottom: 300px;">
+			<h2>Pesquise seu desempenho</h2>
+			<div>
+				<h5>Codigo academico</h5>
+				<input type="text" id="insc"  class="form-control"  Placeholder="É aqui meu filho.." required="">
+				<h5>Periodo avaliativo</h5>
+				<select class="form-control" id="cd_periodo">
+					<option></option>
+					{%for periodo in pavaliativo%}
+					<option value="{{periodo.cd_periodo_avaliativo}}">{{periodo.no_periodo_avaliativo}}</option>
+					{%endfor%}
+                </select><br />
+                <button  class="btn btn-success" style="float: right" onclick="desempenho()">Verificar</button>
+			</div>
+		</div>
+</div>
+<div id="desempenho"></div>
+
+<!-- Counter -->
+<div class="stats">
+	<div class="container">	
+		<div class="row">
+			<div class="col-md-4 col-sm-4 stats-grid stats-grid-1 gridw3">
+				<i class="fa fa-smile-o" aria-hidden="true"></i>
+				<div class="numscroller" data-slno='1' data-min='0' data-max='158' data-delay='3' data-increment="1">85</div>
+				<h4>Happy Customers</h4>
+			</div>
+			<div class="col-md-4 col-sm-4 stats-grid stats-grid-2 gridw3">
+				<i class="fa fa-trophy" aria-hidden="true"></i>
+				<div class="numscroller" data-slno='1' data-min='0' data-max='63' data-delay='3' data-increment="1">95</div>
+				<h4>Awards</h4>
+			</div>
+			<div class="col-md-4 col-sm-4 stats-grid stats-grid-3 gridw3">
+				<i class="fa fa-users" aria-hidden="true"></i>
+				<div class="numscroller" data-slno='1' data-min='0' data-max='562' data-delay='3' data-increment="1">90</div>
+				<h4>Academicos</h4>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<!-- //Counter -->
+
+<div class="wthree_copy_right">
+	<div class="container">
+		<p>© 2018 VNCSISTEMAS</p>
+	</div>
+</div>
+<!-- //footer -->
+<!-- js-scripts -->					
+<!-- js -->
+	<script type="text/javascript" src="{% static "core/js/jquery-2.1.4.min.js"%}"></script>
+	<script type="text/javascript" src="{% static "core/js/bootstrap.js"%}"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
+	<script type="text/javascript" src="{% static "core/js/consulta.js"%}"></script>
+	<!-- //js -->	
+
+<!-- start-smoth-scrolling -->
+<script src="{% static "core/js/SmoothScroll.min.js"%}"></script>
+<script type="text/javascript" src="{% static "core/js/move-top.js"%}"></script>
+<script type="text/javascript" src="{% static "core/js/easing.js"%}"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+	<!-- //here ends scrolling icon -->
+<!-- start-smoth-scrolling -->
+
+<!-- Baneer-js -->
+	<script src="{% static "core/js/responsiveslides.min.js"%}"></script>
+	<script>
+		$(function () {
+			$("#slider").responsiveSlides({
+				auto: true,
+				pager:false,
+				nav: true,
+				speed: 1000,
+				namespace: "callbacks",
+				before: function () {
+					$('.events').append("<li>before event fired.</li>");
+				},
+				after: function () {
+					$('.events').append("<li>after event fired.</li>");
+				}
+			});
+		});
+	</script>
+<!-- //Baneer-js -->
+<!-- js for Counter -->
+		<script type="text/javascript" src="{% static "core/js/numscroller-1.0.js" %}"></script>
+	<!-- /js for Counter -->
+<!-- carousal -->
+	<script src="{% static "core/js/slick." %}" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).on('ready', function() {
+		  $(".center").slick({
+			dots: true,
+			infinite: true,
+			centerMode: true,
+			slidesToShow: 2,
+			slidesToScroll: 2,
+			responsive: [
+				{
+				  breakpoint: 768,
+				  settings: {
+					arrows: true,
+					centerMode: false,
+					slidesToShow: 2
+				  }
+				},
+				{
+				  breakpoint: 480,
+				  settings: {
+					arrows: true,
+					centerMode: false,
+					centerPadding: '40px',
+					slidesToShow: 1
+				  }
+				}
+			 ]
+		  });
+		});
+	</script>
+<!-- //carousal -->
+
+<!-- //js-scripts -->
+</body>
+</html>

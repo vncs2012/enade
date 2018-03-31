@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Correção de Simulado Enade</title>
+<style>
+    @media print{
+        * {
+            background:transparent !important;
+            color:#000 !important;
+            text-shadow:none !important;
+            filter:none !important;
+            -ms-filter:none !important;
+            }
+        body {
+            margin:0;
+            padding:0;
+            line-height: 1.4em;
+            color: #000;
+        }
+        
+        h3 {
+            font-size: 14pt;
+            text-align: center;
+         }
+
+         table{
+            line-height: 1.5em;
+            border: 0.6px solid black;
+         }
+        td,th{
+            padding-top: 1px;
+            padding-left: 0.4px;
+        }
+        .textoCentro{
+            text-align: center;
+        }
+    }
+
+</style>
+<!-- //css files --> 
+</head>
+<body>
+<h3>Desempenho dos Academicos do curso <strong>{{curso}} do {{periodo}}&#176;</strong></h3>
+<table >
+    <tr item-height="100%">
+      <th>
+        <table>
+            <thead>
+                <tr>
+                    <th class="textoCentro">Cod Academico</th>
+                    <th class="textoCentro">Academico</th>
+                    <th class="textoCentro">Periodo Avaliativo</th>
+                    <th class="textoCentro">Acerto</th>
+                </tr>
+            </thead>
+            <tbody>
+            {%for value in resultado%}
+                <tr >
+                    <td class="textoCentro">{{value.nu_cod_academico}}</td>
+                    <td>{{value.no_academico}}</td>
+                    <td class="textoCentro">{{value.no_periodo_avaliativo}}</td>
+                    <td class="textoCentro">{{value.totalacertadas }}</td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>   
+      </th>
+      <th width='350' left='50'>
+        <table width='150'>
+            <thead>
+                <tr>
+                    <th class="textoCentro">Questão</th>
+                    <th class="textoCentro">Acertos</th>
+                </tr>
+            </thead>
+            <tbody>
+            {%for value in acertadas%}
+                <tr >
+                    <td class="textoCentro">{{value.nu_questao}}</td>
+                    <td>{{value.totalacertadas}}</td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </th>
+    </tr>
+  </table>       
+
+</body>
+</html>

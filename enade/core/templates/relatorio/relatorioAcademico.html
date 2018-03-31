@@ -1,0 +1,77 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %} 
+{% block content %}
+ 
+<div id="content-main">
+   <ul class="object-tools initialized">
+      <li>
+      </li>
+   </ul>
+   <div class="module initialized" id="changelist">
+      <div id="toolbar" class="initialized">
+          <h2 class="text-center">Relatorio dos Academicos por periodo</h2>
+        <form action="/getRelatorioAcademicoPeriodo/" method="POST" target="_blank">
+         <div style="width: 350px; ">    
+              <span id="curso">
+              </span>
+              <select class="" name="cd_periodo"  id="cd_periodo" size="50">
+                <option value="" disabled selected>Selecio periodo</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>  
+              </select><br />
+              <br />
+            </form>
+              <input style="float:right" value="Pesquisar"  type="submit">      
+            </div>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  getcurso();
+});
+function getcurso() {
+  var url = "/getcurso/";
+  var postData = {
+    
+  };
+  var csrftoken = jQuery.cookie('csrftoken');
+
+  jQuery.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+  });
+  jQuery.get(url, postData, function (data, status) {
+    if (status == "success") {
+        jQuery("#curso").html(data);
+      } else {
+        jQuery("#curso").html('<div class="alert alert-danger" ><h3>Tente novamente!</h3></div>');
+      }
+  });
+}
+  function getCookie(c_name)
+  {
+      if (document.cookie.length > 0)
+      {
+          c_start = document.cookie.indexOf(c_name + "=");
+          if (c_start != -1)
+          {
+              c_start = c_start + c_name.length + 1;
+              c_end = document.cookie.indexOf(";", c_start);
+              if (c_end == -1) c_end = document.cookie.length;
+              return unescape(document.cookie.substring(c_start,c_end));
+          }
+      }
+      return "";
+   }
+</script>
+{% endblock content %}
