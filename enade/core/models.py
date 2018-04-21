@@ -157,7 +157,6 @@ class Imagem(models.Model):
                 return im.url
             except:
                 return ''
- 
         return ''
     def __str__(self):
         return self.ds_arquivo.url
@@ -173,7 +172,6 @@ class GabaritoAcademico(models.Model):
     class Meta:
         managed = False
         db_table = 'tb_gabarito_academico'
-
     def __unicode__(self):
         return self.res_questao
 
@@ -186,7 +184,6 @@ class QuestionarioAcademico(models.Model):
     class Meta:
         managed = False
         db_table = 'tb_gabarito_questionario'
-
     def __unicode__(self):
         return self.res_questionario
 
