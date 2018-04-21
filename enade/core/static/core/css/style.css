@@ -132,18 +132,18 @@ width:100%;
    margin: 0 0.5em;
 }
 .navbar-nav > li:nth-child(6){
-	margin-right: 0 !important;
+	margin-right:0;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus,.navbar-default .navbar-nav li a.active {
     color: #ff8c00;
 }
 .navbar-right {
-    float: right !important;
-    margin-right:0px !important;
+    float: right;
+    margin-right:0px;
     margin-top: .5em;
 }
 .navbar-collapse {
-    padding: 0 !important;
+    padding: 0;
 }
 /*-- //top-nav --*/
 /*-- animate popup --*/ 
@@ -171,7 +171,7 @@ width:100%;
 .agileits-login textarea {
 	resize:none;
 	height:80px;
-	margin-bottom: 0 !important;
+	margin-bottom:0;
 }
 .agileits-login input[type="text"]:focus, .agileits-login input[type="password"]:focus,.agileits-login input[type="email"]:focus,.agileits-login textarea:focus {
     border-bottom: 2px solid rgb(223, 31, 58);
@@ -327,7 +327,7 @@ input.checkbox:checked:after {
   border-color: #012231;
 }
 .navbar-default .navbar-brand {
-	color:#fff !important;
+	color:#fff ;
 	font-size:40px;
 	text-decoration: none;
 }
@@ -750,7 +750,7 @@ a.navbar-brand span {
     color: #999;
     text-align: left;
     padding: 1em 2em 0em;
-	margin: 0 !important;
+	margin: 0 ;
 	line-height:2em;
 }
 .modal-body p i {
@@ -1938,7 +1938,7 @@ h3.agileits-title {
 	}
 	.team-grids {
     width: 44%;
-    margin-bottom: 2em !important;
+    margin-bottom: 2em;
 }
 .team-grids:nth-child(1) {
     margin: 0 0 0 3em;
@@ -1983,7 +1983,7 @@ margin-bottom: 2em;
 }
 .team-grids {
     width: 41%;
-    margin-bottom: 2em !important;
+    margin-bottom: 2em;
 }
 .team-grids:hover .agileits-captn {
     top: 65%;
@@ -1995,7 +1995,7 @@ margin-bottom: 2em;
 }
 .team-grids {
     width: 41%;
-    margin-bottom: 2em !important;
+    margin-bottom: 2em;
 }
 }
 @media(max-width:736px){
@@ -2008,7 +2008,7 @@ div#bs-example-navbar-collapse-1 {
     z-index: 999;
 }
 .navbar-right {
-    float: none !important;
+    float: none;
     text-align: center;
 	background: rgba(0, 0, 0, 0.79);
 }
@@ -2131,7 +2131,7 @@ div#bs-example-navbar-collapse-1 {
 .team-grids {
     width: 50%;
     float: none;
-    margin: 0 auto 2em !important;
+    margin: 0 auto 2em;
 }
 .team-grids:hover .agileits-captn {
     top: 58%;
@@ -2179,7 +2179,7 @@ div#bs-example-navbar-collapse-1 {
 .team-grids {
     width: 62%;
     float: none;
-    margin: 0 auto 2em !important;
+    margin: 0 auto 2em;
 }
 .services-right-grid {
     margin: 1em auto;

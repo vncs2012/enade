@@ -9,16 +9,18 @@ class correcao():
     @staticmethod
     def getCorteRespostaGabarito(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        return img[1400:2615, 95:490]  
+        return img[1400:2615, 95:490]
+
     @staticmethod
     def getCorteCodigoAluno(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        return img[880:1339,175:975]  
+        return img[880:1339,175:975]
+
     @staticmethod
     def getCorteQuestionario(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
         return img[1400:1945,550:950]
-    
+
     def ProcessamentoImagen(img):
         img = cv2.medianBlur(img,5)
         ret,th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
@@ -99,11 +101,10 @@ class correcao():
         return inscricao[::-1]
     
     @staticmethod
-    def getRespostaQestionario(img):
-    
+    def getRespostaQestionario(img):    
         questionario={}
         questoesQuestionario=9
-        imgProcessada = ProcessamentoImagen(img)
+        ProcessamentoImagen(img)
        
         for p in keypoints:
             if p.pt[0] > 20 and p.pt[0] < 85:

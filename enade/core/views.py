@@ -59,14 +59,12 @@ def getCurso(request):
 def relatorioAcademicoPeriodo(request):
     cd_curso = request.POST.get('cd_curso')
     cd_periodo = request.POST.get('cd_periodo')
-   
     context = {
         "resultado": getRelatorioAcademicoPeriodo(cd_curso,cd_periodo),
         "curso": Curso.objects.filter(cd_curso=cd_curso)[0].no_curso,
         "acertadas": getRelatorioAcertosQuestoes(cd_curso,cd_periodo),
         "periodo":cd_periodo
     }
- 
     html  = render_to_string('relatorio/relatorioAcademicoPeriodo.html',context)
     file = open('relatoriosPDF/'+cd_periodo+'-'+cd_curso+'.pdf', "w+b")
     pisa.CreatePDF(html.encode('utf-8'), dest=file,encoding='utf-8')

@@ -17,7 +17,7 @@ ar_periodo=((None,"Selecione um Periodo"),
                (9,"9"),
                (10,"10"),
               )
-ar_opcao=((None,"Selecione uma Resposta"), 
+ar_opcao=((None,"Selecione uma Resposta"),
                ('A',"A"),
                ('B',"B"),
                ('C',"C"),
@@ -32,7 +32,7 @@ class Curso(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tb_curso' 
+        db_table = 'tb_curso'
     def __str__(self):
         return self.no_curso
 
@@ -78,7 +78,6 @@ class Gabarito(models.Model):
     cd_periodo = models.IntegerField("Periodo",choices=ar_periodo,blank=False)
     cd_curso = models.IntegerField("Curso",choices=listaCurso)
     cd_periodo_avaliativo = models.IntegerField("Periodo Avaliativo ", choices=listaPeriodoAva)
-    
     class Meta:
         managed = False
         db_table = 'tb_gabarito'
