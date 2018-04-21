@@ -77,10 +77,9 @@ class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
             thread = Thread(target=uploadProcessamento, args=(urlArquivo,cd_arquivo,request,title,))
             thread.setDaemon = True
             thread.start()
-            thread.join()     
+            thread.join()
         except Exception:
             pass
-        
         return {
                 'url': f.imagem(),
                 'thumbnail_url': f.imagem(),

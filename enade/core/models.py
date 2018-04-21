@@ -131,7 +131,6 @@ class Imagem(models.Model):
         verbose_name = 'Imagem'
         verbose_name_plural = 'Imagens'
         db_table = 'tb_upload_gabarito'
-    
     cd_arquivo = models.AutoField(primary_key=True,editable=False)
     ds_arquivo  = ImageField(
         u'Imagem', upload_to=rename_file_and_upload_to, max_length=255

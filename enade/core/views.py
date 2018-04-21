@@ -103,7 +103,6 @@ def getImagem(mat,cd_periodo):
         join correcao_gabarito.tb_upload_gabarito aa using(cd_avaliativo_academico)\
         where a.nu_cod_academico='"+mat+"'\
         and pa.cd_periodo_avaliativo ="+ cd_periodo
-    
     cursor.execute(sql)
     return  cursor.fetchone()
 

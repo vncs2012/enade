@@ -49,7 +49,6 @@ class correcao():
         questoes= 20
         prova={}
         ProcessamentoImagen(img)
-    
         for p in keypoints:
             if p.pt[0] > 22 and p.pt[0] < 80:
                 # print(questoes,"-A",p.pt)
