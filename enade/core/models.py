@@ -151,7 +151,6 @@ class Imagem(models.Model):
     imagemAdmin.short_description = u'Imagem'
     def imagem(self):
         from sorl.thumbnail import get_thumbnail
- 
         if self.nome:
             try:
                 im = get_thumbnail(self.nome, '80x45', quality=80)
@@ -160,10 +159,8 @@ class Imagem(models.Model):
                 return ''
  
         return ''
-
     def __str__(self):
         return self.ds_arquivo.url
- 
     def url(self):
         return reverse('imagem', args=(self.slug,))
         
