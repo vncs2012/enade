@@ -156,7 +156,6 @@ def getRelatorioAcademicoPeriodo(cd_curso,cd_periodo):
 		 and pa.bo_ativo and g.cd_periodo = "+cd_periodo+" and g.cd_curso = "+cd_curso+" \
 		GROUP by no_periodo_avaliativo,pha.cd_academico\
 		ORDER by totalacertadas DESC"
-        
     cursor.execute(sql)
     fieldnames = [name[0] for name in cursor.description]
     result =[]

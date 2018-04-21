@@ -84,8 +84,7 @@ class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
                 'url': f.imagem(),
                 'thumbnail_url': f.imagem(),
                 'id': f.cd_arquivo,
-            }
-         
+            }   
     def delete_file(self, pk, request):
         '''
         Function to delete a file.

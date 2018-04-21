@@ -137,7 +137,6 @@ class Imagem(models.Model):
     )
     nome = models.CharField("Nome da imagem",max_length=255)
     cd_avaliativo_academico = models.IntegerField("Periodo",choices=ar_periodo,blank=False)
-    
     def imagemAdmin(self):
         from sorl.thumbnail import get_thumbnail
         if self.nome:

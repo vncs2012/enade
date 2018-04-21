@@ -97,7 +97,6 @@ class correcao():
             elif p.pt[0] > 685 and p.pt[0] < 850:
                 inscricao=inscricao+'9'
         return inscricao[::-1]
-    
     @staticmethod
     def getRespostaQestionario(img):
         questionario={}
