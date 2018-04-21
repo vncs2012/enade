@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
-SESSION_COOKIE_AGE = 3600 
+SESSION_COOKIE_AGE = 3600
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -160,7 +160,7 @@ JET_THEMES = [
                     'color': '#5EADDE',
                     'title': 'Light Blue'
                 },
-                { 
+                {
                     'theme': 'light-gray',
                     'color': '#222',
                     'title': 'Light Gray'

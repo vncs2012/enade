@@ -9,11 +9,10 @@ from .models import Curso
 from .models import Gabarito,GabaritoResposta
 from .models import PeriodoAvaliativoAcademico
 from .models import Imagem,RelatorioAcademicos
-from .models import QuestionarioAcademico
 from jet.admin import CompactInline
 from multiupload.admin import MultiUploadAdmin
 from sorl.thumbnail.admin import AdminImageMixin
-from upload import uploadProcessamento 
+from upload import uploadProcessamento
 
 
 class GabaritoRespostaInline(CompactInline):
@@ -67,7 +66,7 @@ class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
         "image/pjpeg",
         "image/png",
     )
- 
+
     def process_uploaded_file(self, uploaded, object, request):
         title = request.POST.get('title', '') or uploaded.name
         try:
@@ -118,6 +117,6 @@ class AlunoAdmin(admin.ModelAdmin ):
 admin.site.register(Aluno, AlunoAdmin)
 admin.site.register(PeriodoAvaliativo, PeriodoAvaliativoAdmin)
 admin.site.register(Curso, CursoAdmin)
-admin.site.register(Gabarito, GabaritoAdmin) 
+admin.site.register(Gabarito, GabaritoAdmin)
 admin.site.register(Imagem, ImagemAdmin)
 admin.site.register(RelatorioAcademicos, RelatorioAcademicosAdmin)

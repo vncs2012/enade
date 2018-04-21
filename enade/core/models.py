@@ -5,7 +5,7 @@ from sorl.thumbnail import ImageField
 from django.template.defaultfilters import slugify
 
 # Create your models here.
-ar_periodo=((None,"Selecione um Periodo"), 
+ar_periodo=((None,"Selecione um Periodo"),
                (1,"1"),
                (2,"2"),
                (3,"3"),
@@ -23,7 +23,7 @@ ar_opcao=((None,"Selecione uma Resposta"),
                ('C',"C"),
                ('D',"D"),
                ('E',"E")
-              )  
+              )
 class Curso(models.Model):
     ar_status= ((None,""),(True,"Ativo"),(False,"Inativo"))
     cd_curso = models.AutoField(primary_key=True,editable=False)
@@ -32,8 +32,7 @@ class Curso(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tb_curso'
-    
+        db_table = 'tb_curso' 
     def __str__(self):
         return self.no_curso
 
@@ -65,7 +64,7 @@ class Aluno(models.Model):
     nu_cod_academico = models.CharField("Codigo do academico",max_length=100, blank=True)
     class Meta:
         managed = False
-        db_table ='tb_academico'      
+        db_table = 'tb_academico'
 
     def __str__(self):
       return self.no_academico
@@ -78,7 +77,7 @@ class Gabarito(models.Model):
     cd_gabarito = models.AutoField(primary_key=True,editable=False)
     cd_periodo = models.IntegerField("Periodo",choices=ar_periodo,blank=False)
     cd_curso = models.IntegerField("Curso",choices=listaCurso)
-    cd_periodo_avaliativo = models.IntegerField("Periodo Avaliativo ", choices=listaPeriodoAva)  
+    cd_periodo_avaliativo = models.IntegerField("Periodo Avaliativo ", choices=listaPeriodoAva)
     
     class Meta:
         managed = False
@@ -91,8 +90,8 @@ class GabaritoResposta(models.Model):
     cd_gabarito_resposta = models.AutoField(primary_key=True,editable=False)
     nu_questao = models.CharField("N da Questao",max_length=2,blank=False)
     res_questao = models.CharField("Resposta da Questo",max_length=1,choices=ar_opcao)
-    cd_gabarito = models.ForeignKey(Gabarito, db_column= 'cd_gabarito') 
-   
+    cd_gabarito = models.ForeignKey(Gabarito, db_column= 'cd_gabarito')
+
     class Meta:
         managed = False
         db_table = 'tb_gabarito_resposta'
@@ -101,9 +100,10 @@ class GabaritoResposta(models.Model):
         return "Salvo com Sucesso"
 
 class PeriodoAvaliativoAcademico(models.Model):
+
     cd_avaliativo_academico = models.AutoField(primary_key=True,editable=False)
-    cd_periodo_avaliativo = models.IntegerField("Periodo Avaliativo",choices=listaPeriodoAva)  
-    cd_academico = models.ForeignKey(Aluno,db_column= 'cd_academico',on_delete=models.CASCADE) 
+    cd_periodo_avaliativo = models.IntegerField("Periodo Avaliativo",choices=listaPeriodoAva)
+    cd_academico = models.ForeignKey(Aluno,db_column= 'cd_academico',on_delete=models.CASCADE)
     nu_matricula = models.CharField("Matricula",max_length=15,blank=False)
     cd_periodo = models.IntegerField("Periodo",choices=ar_periodo,blank=False)
 
@@ -164,8 +164,8 @@ class Imagem(models.Model):
             except:
                 return ''
  
-        return ''     
- 
+        return ''
+
     def __str__(self):
         return self.ds_arquivo.url
  

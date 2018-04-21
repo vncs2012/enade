@@ -5,6 +5,7 @@ from .models import PeriodoAvaliativoAcademico
 from .models import GabaritoAcademico,QuestionarioAcademico
 
 def uploadProcessamento(urlArquivo,cd_arquivo,request,title):
+
     sleep(1)
     imagem_original= urlArquivo
     # matricula da prova e update do cd_avaliativo_academico
