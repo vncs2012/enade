@@ -149,7 +149,6 @@ class Imagem(models.Model):
     imagemAdmin.is_safe = True
     imagemAdmin.allow_tags = True
     imagemAdmin.short_description = u'Imagem'
- 
     def imagem(self):
         from sorl.thumbnail import get_thumbnail
  

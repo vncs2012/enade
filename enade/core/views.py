@@ -84,7 +84,6 @@ def getRespostas(mat,cd_periodo):
     join correcao_gabarito.tb_gabarito_resposta gr USING(cd_gabarito)\
     where gr.nu_questao = ga.nu_questao and gr.res_questao = ga.res_questao and a.nu_cod_academico='"+mat+"'\
     and pa.cd_periodo_avaliativo ="+ cd_periodo
-
     cursor.execute(sql)
     fieldnames = [name[0] for name in cursor.description]
     result =[]
@@ -113,7 +112,6 @@ def getGabarito(mat,cd_periodo):
     join tb_gabarito g USING(cd_periodo_avaliativo)\
     join tb_gabarito_resposta gr USING(cd_gabarito)\
     where  pa.cd_periodo_avaliativo ="+ cd_periodo
-
     cursor.execute(sql)
     fieldnames = [name[0] for name in cursor.description]
     result =[]
@@ -132,7 +130,6 @@ def getRespostasAcademico(mat,cd_periodo):
     join tb_gabarito_academico ga USING(cd_avaliativo_academico)\
     where  a.nu_cod_academico='"+mat+"'\
     and pa.cd_periodo_avaliativo ="+ cd_periodo
-
     cursor.execute(sql)
     fieldnames = [name[0] for name in cursor.description]
     result =[]
@@ -177,7 +174,6 @@ def getRelatorioAcertosQuestoes(cd_curso,cd_periodo):
 		 and pa.bo_ativo and g.cd_periodo = "+cd_periodo+" and g.cd_curso = "+cd_curso+"\
 		 GROUP by gr.nu_questao,gr.res_questao,no_periodo_avaliativo\
 		 ORDER by gr.nu_questao"
-        
     cursor.execute(sql)
     fieldnames = [name[0] for name in cursor.description]
     result =[]
