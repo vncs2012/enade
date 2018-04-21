@@ -124,9 +124,8 @@ def rename_file_and_upload_to(objeto, arquivo):
 	nome, ext = os.path.splitext( arquivo )
 	url = slugify( nome[:15] )
 	return os.path.join( 'core/static', caminho, url+ext )
- 
+
 class Imagem(models.Model):
- 
     class Meta:
         ordering = ('nome', )
         verbose_name = 'Imagem'

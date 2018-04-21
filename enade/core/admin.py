@@ -2,7 +2,6 @@
 from django.contrib import admin
 from threading import Thread
 from time import sleep
-# Register your models here.
 from .models import Aluno
 from .models import PeriodoAvaliativo
 from .models import Curso
@@ -78,8 +77,7 @@ class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
             thread = Thread(target=uploadProcessamento, args=(urlArquivo,cd_arquivo,request,title,))
             thread.setDaemon = True
             thread.start()
-            thread.join()
-            
+            thread.join()     
         except Exception:
             pass
         

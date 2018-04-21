@@ -46,7 +46,6 @@ class correcao():
 
     @staticmethod
     def getRespostaGabarito(img):
-    
         questoes= 20
         prova={}
         ProcessamentoImagen(img)
@@ -101,11 +100,10 @@ class correcao():
         return inscricao[::-1]
     
     @staticmethod
-    def getRespostaQestionario(img):    
+    def getRespostaQestionario(img):
         questionario={}
         questoesQuestionario=9
         ProcessamentoImagen(img)
-       
         for p in keypoints:
             if p.pt[0] > 20 and p.pt[0] < 85:
                 # print(questoes,"-A",p.pt)

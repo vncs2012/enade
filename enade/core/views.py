@@ -72,7 +72,6 @@ def relatorioAcademicoPeriodo(request):
     file.seek(0)
     pdf = file.read()
     file.close()
-          
     return HttpResponse(pdf, 'application/pdf')
 
 def getRespostas(mat,cd_periodo):
@@ -110,7 +109,7 @@ def getImagem(mat,cd_periodo):
 
 def getGabarito(mat,cd_periodo):
     cursor = connection.cursor()
-    cd_curso = Aluno.objects.filter(nu_cod_academico=mat)[0].cd_curso
+    # cd_curso = Aluno.objects.filter(nu_cod_academico=mat)[0].cd_curso
     sql="SELECT gr.nu_questao,gr.res_questao ,pa.no_periodo_avaliativo from tb_periodo_avaliativo pa \
     join tb_gabarito g USING(cd_periodo_avaliativo)\
     join tb_gabarito_resposta gr USING(cd_gabarito)\
