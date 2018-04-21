@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- 
+# -*-coding:utf-8-*- 
 import cv2
 import numpy as np
 
-class correcao():
-    
+class correcao():    
     global ProcessamentoImagen
 
     @staticmethod
@@ -25,25 +24,25 @@ class correcao():
     def ProcessamentoImagen(img):
         img = cv2.medianBlur(img,5)
         ret,th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
-        nucleo = np.ones((5,5),np.uint16)    
+        nucleo = np.ones((5,5), np.uint16)    
         linhaFiltrada = cv2.dilate(th1,nucleo,iterations = 5)
         linhaFiltrada = cv2.erode(linhaFiltrada,nucleo,iterations = 5)
         # ret,th1 = cv2.threshold(linhaFiltrada,127,255,cv2.THRESH_BINARY)
         
         detector_params = cv2.SimpleBlobDetector_Params()
         # Filter by Inertia
-        detector_params.filterByInertia = True
-        detector_params.minInertiaRatio = 0.15  
+        detector_params.filterByInertia= True
+        detector_params.minInertiaRatio= 0.15  
         # Create a detector with the parameters
         ver = (cv2.__version__).split('.')
         if int(ver[0]) < 3 :
             detector = cv2.SimpleBlobDetector(detector_params)
-        else : 
+        else: 
             detector = cv2.SimpleBlobDetector_create(detector_params)
         # detector = cv2.SimpleBlobDetector(detector_params)
         global keypoints
         keypoints = detector.detect(linhaFiltrada)
-        im_with_keypoints = cv2.drawKeypoints(linhaFiltrada, keypoints, np.array([]), (125,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)  
+        im_with_keypoints = cv2.drawKeypoints(linhaFiltrada,keypoints,np.array([]),(125,0,255),cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)  
         return im_with_keypoints
 
     @staticmethod
@@ -75,9 +74,8 @@ class correcao():
         return prova
 
     @staticmethod
-    def getInscricao(img):
-    
-        inscricao='' 
+    def getInscricao(img):  
+        inscricao= '' 
         imgProcessada = ProcessamentoImagen(img)
 
         for p in keypoints:

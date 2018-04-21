@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-import os
 from threading import Thread
 from time import sleep
-from django.contrib.auth.models import User
 # Register your models here.
 from .models import Aluno
 from .models import PeriodoAvaliativo
@@ -11,12 +9,11 @@ from .models import Curso
 from .models import Gabarito,GabaritoResposta
 from .models import PeriodoAvaliativoAcademico
 from .models import Imagem,RelatorioAcademicos
-from .models import GabaritoAcademico,QuestionarioAcademico
+from .models import QuestionarioAcademico
 from jet.admin import CompactInline
-from jet.filters import RelatedFieldAjaxListFilter
 from multiupload.admin import MultiUploadAdmin
 from sorl.thumbnail.admin import AdminImageMixin
-from upload import  uploadProcessamento 
+from upload import uploadProcessamento 
 
 
 class GabaritoRespostaInline(CompactInline):
@@ -47,7 +44,6 @@ class CursoAdmin(admin.ModelAdmin):
 
 class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
     list_display = ('nome', 'imagemAdmin', )
- 
     # default value of all parameters:
     change_form_template = 'multiupload/change_form.html'
     change_list_template = 'multiupload/change_list.html'
@@ -119,9 +115,9 @@ class AlunoAdmin(admin.ModelAdmin ):
     list_filter = ( 'no_academico', 'email','cd_curso','nu_cod_academico')
     list_per_page = 25
 
-admin.site.register(Aluno,AlunoAdmin)
-admin.site.register(PeriodoAvaliativo,PeriodoAvaliativoAdmin)
-admin.site.register(Curso,CursoAdmin)
-admin.site.register(Gabarito,GabaritoAdmin) 
+admin.site.register(Aluno, AlunoAdmin)
+admin.site.register(PeriodoAvaliativo, PeriodoAvaliativoAdmin)
+admin.site.register(Curso, CursoAdmin)
+admin.site.register(Gabarito, GabaritoAdmin) 
 admin.site.register(Imagem, ImagemAdmin)
-admin.site.register(RelatorioAcademicos,RelatorioAcademicosAdmin)
+admin.site.register(RelatorioAcademicos, RelatorioAcademicosAdmin)

@@ -43,17 +43,15 @@ def Desempenho(request):
     'gabarito': imagem[0],
     'academico': Aluno.objects.filter(nu_cod_academico=mat)[0].no_academico
     }
-    html = render_to_string('core/desempenho.html',context)
-    
+    html = render_to_string('core/desempenho.html',context) 
     return HttpResponse(html)
 
 @csrf_exempt
 def getCurso(request):
     context = {
-    'curso': Curso.objects.all()    
+    'curso': Curso.objects.all()
     }
-    html = render_to_string('relatorio/selectCurso.html',context)
-    
+    html = render_to_string('relatorio/selectCurso.html',context)   
     return HttpResponse(html)
     
 @csrf_exempt
@@ -197,6 +195,6 @@ def getRelatorioAcertosQuestoes(cd_curso,cd_periodo):
 def desepenhoAcadmicomontar(certas,respostas):
     for k,certa in enumerate(certas):
         for kk,resposta in enumerate(respostas):
-            if ((certa.get('nu_questao',k) == resposta.get('nu_questao',kk)) and (certa.get('res_questao',k)  == resposta.get('res_questao',kk))): 
+            if ((certa.get('nu_questao',k) == resposta.get('nu_questao',kk)) and (certa.get('res_questao',k) == resposta.get('res_questao',kk))): 
                 dict(dic0.items() + dic1.items())
     return respostas

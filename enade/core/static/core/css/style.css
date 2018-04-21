@@ -1938,7 +1938,7 @@ h3.agileits-title {
 	}
 	.team-grids {
     width: 44%;
-    margin-bottom: 2em!important;
+    margin-bottom: 2em !important;
 }
 .team-grids:nth-child(1) {
     margin: 0 0 0 3em;
@@ -1983,7 +1983,7 @@ margin-bottom: 2em;
 }
 .team-grids {
     width: 41%;
-    margin-bottom: 2em!important;
+    margin-bottom: 2em !important;
 }
 .team-grids:hover .agileits-captn {
     top: 65%;

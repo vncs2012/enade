@@ -1,5 +1,5 @@
 from time import sleep
-from correcao import correcao 
+from correcao import correcao
 from .models import Imagem
 from .models import PeriodoAvaliativoAcademico
 from .models import GabaritoAcademico,QuestionarioAcademico
@@ -11,7 +11,7 @@ def uploadProcessamento(urlArquivo,cd_arquivo,request,title):
     img_codigo=correcao.getCorteCodigoAluno(imagem_original)
     codigoAcademico = correcao.getInscricao(img_codigo)
     # import pdb; pdb.set_trace()
-    consulta_matricula = PeriodoAvaliativoAcademico.objects.get(nu_matricula=codigoAcademico)   
+    consulta_matricula = PeriodoAvaliativoAcademico.objects.get(nu_matricula=codigoAcademico)
     Imagem.objects.filter(pk=cd_arquivo).update(cd_avaliativo_academico=consulta_matricula.cd_avaliativo_academico)
     #Corrigindo gabarito
     respostas={}
