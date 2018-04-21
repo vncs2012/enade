@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 from django.db import models
 from sorl.thumbnail import ImageField
 from django.template.defaultfilters import slugify
-from correcao import correcao 
 
 # Create your models here.
 ar_periodo= ((None,"Selecione um Periodo"), 
@@ -157,7 +156,6 @@ class Imagem(models.Model):
     imagemAdmin.short_description = u'Imagem'
  
     def imagem(self):
-        from django.conf import settings
         from sorl.thumbnail import get_thumbnail
  
         if self.nome:

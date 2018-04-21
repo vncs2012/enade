@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*- 
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
-from skimage import exposure
 
 class correcao():
     
@@ -12,19 +10,16 @@ class correcao():
     @staticmethod
     def getCorteRespostaGabarito(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        # im_with_keypoints = ProcessamentoImagen(img)
         return img[1400:2615, 95:490]
     
     @staticmethod
     def getCorteCodigoAluno(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        # im_with_keypoints = ProcessamentoImagen(img)
         return img[880:1339,175:975]
     
     @staticmethod
     def getCorteQuestionario(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        # im_with_keypoints = ProcessamentoImagen(img)
         return img[1400:1945,550:950]
     
     def ProcessamentoImagen(img):
@@ -56,7 +51,7 @@ class correcao():
     
         questoes= 20
         prova={}
-        imgProcessada = ProcessamentoImagen(img)
+        ProcessamentoImagen(img)
     
         for p in keypoints:
             if p.pt[0] > 22 and p.pt[0] < 80:

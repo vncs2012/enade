@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import os
-from django.shortcuts import render
 from django.shortcuts import render_to_response
-from django.conf import settings
 from django.http import HttpResponse
-from django.template import Context
 from django.template.loader import render_to_string
-from django.template.loader import get_template
-import datetime
-from xhtml2pdf import pisa 
-from django import template
+from xhtml2pdf import pisa
 from django.db import connection
-from django.views.decorators.csrf import csrf_exempt,requires_csrf_token,csrf_protect
-from core.models import Aluno,Curso,PeriodoAvaliativo
+from django.views.decorators.csrf import csrf_exempt
+from core.models import Aluno,Curso
 
 @csrf_exempt
 def home(reques):
@@ -77,7 +70,7 @@ def relatorioAcademicoPeriodo(request):
  
     html  = render_to_string('relatorio/relatorioAcademicoPeriodo.html',context)
     file = open('relatoriosPDF/'+cd_periodo+'-'+cd_curso+'.pdf', "w+b")
-    pisaStatus = pisa.CreatePDF(html.encode('utf-8'), dest=file,encoding='utf-8')
+    pisa.CreatePDF(html.encode('utf-8'), dest=file,encoding='utf-8')
 
     file.seek(0)
     pdf = file.read()

@@ -85,7 +85,7 @@ class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
             thread.start()
             thread.join()
             
-        except :
+        except Exception:
             pass
         
         return {
