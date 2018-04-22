@@ -162,7 +162,7 @@ class Imagem(models.Model):
         return self.ds_arquivo.url
     def url(self):
         return reverse('imagem', args=(self.slug,))
-        
+
 class GabaritoAcademico(models.Model):
     cd_gabarito_academico = models.AutoField(primary_key=True,editable=False)
     nu_questao = models.IntegerField()
