@@ -7,7 +7,7 @@ from .models import PeriodoAvaliativo
 from .models import Curso
 from .models import Gabarito,GabaritoResposta
 from .models import PeriodoAvaliativoAcademico
-from .models import Imagem,RelatorioAcademicos
+from .models import Imagem,RelatorioAcademicos,RelatorioAcademicosQ
 from jet.admin import CompactInline
 from multiupload.admin import MultiUploadAdmin
 from sorl.thumbnail.admin import AdminImageMixin
@@ -69,7 +69,7 @@ class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
     def process_uploaded_file(self, uploaded, object, request):
         title = request.POST.get('title', '') or uploaded.name
         try:
-            sleep(1)
+            sleep(4)
             f = Imagem(ds_arquivo=uploaded,nome=title)
             f.save()
             cd_arquivo =f.cd_arquivo
@@ -96,6 +96,9 @@ class ImagemAdmin(AdminImageMixin, MultiUploadAdmin):
 class RelatorioAcademicosAdmin(admin.ModelAdmin):
     change_list_template = "relatorio/relatorioAcademico.html"
 
+class RelatorioAcademicosqAdmin(admin.ModelAdmin):
+    change_list_template = "relatorio/relatorioAcademico.html"
+
 class AlunoInline(CompactInline):
     model = PeriodoAvaliativoAcademico
     fk_name = 'cd_academico'
@@ -116,3 +119,4 @@ admin.site.register(Curso, CursoAdmin)
 admin.site.register(Gabarito, GabaritoAdmin)
 admin.site.register(Imagem, ImagemAdmin)
 admin.site.register(RelatorioAcademicos, RelatorioAcademicosAdmin)
+admin.site.register(RelatorioAcademicosQ, RelatorioAcademicosqAdmin)

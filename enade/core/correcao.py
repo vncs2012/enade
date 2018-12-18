@@ -9,39 +9,44 @@ class correcao():
     @staticmethod
     def getCorteRespostaGabarito(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        return img[1400:2615, 95:490]
+        return img[1400:2650, 80:468]
 
     @staticmethod
     def getCorteCodigoAluno(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        return img[880:1339,175:975]
+        return img[870:1330,150:975]
 
     @staticmethod
     def getCorteQuestionario(imge):
         img =cv2.imread(imge, cv2.IMREAD_GRAYSCALE)
-        return img[1400:1945,550:950]
+        return img[1350:2000,530:950]
 
     def ProcessamentoImagen(img):
+        
         img = cv2.medianBlur(img,5)
-        ret,th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
-        nucleo = np.ones((5,5), np.uint16)
-        linhaFiltrada = cv2.dilate(th1,nucleo,iterations = 5)
-        linhaFiltrada = cv2.erode(linhaFiltrada,nucleo,iterations = 5)
-
+    	ret,th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+    
+    	nucleo = np.ones((5,5),np.uint16) 
+        linhaFiltrada = cv2.morphologyEx(th1,cv2.MORPH_OPEN,nucleo, iterations = 3)
+        linhaFiltrada = cv2.dilate(linhaFiltrada,nucleo,iterations = 3)
+        
+        ret,linhaFiltrada = cv2.threshold(linhaFiltrada,127,255,cv2.THRESH_BINARY_INV)
+        
         detector_params = cv2.SimpleBlobDetector_Params()
-        # Filter by Inertia
-        detector_params.filterByInertia= True
-        detector_params.minInertiaRatio= 0.15
-        # Create a detector with the parameters
+
+        detector_params.filterByInertia = True
+        detector_params.minInertiaRatio = 0.15
         ver = (cv2.__version__).split('.')
         if int(ver[0]) < 3 :
             detector = cv2.SimpleBlobDetector(detector_params)
         else :
             detector = cv2.SimpleBlobDetector_create(detector_params)
-        # detector = cv2.SimpleBlobDetector(detector_params)
+
         global keypoints
         keypoints = detector.detect(linhaFiltrada)
-        im_with_keypoints = cv2.drawKeypoints(linhaFiltrada,keypoints,np.array([]),(125,0,255),cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+        
+        im_with_keypoints = cv2.drawKeypoints(linhaFiltrada, keypoints, np.array([]), 
+        (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)  
         return im_with_keypoints
 
     @staticmethod
@@ -49,22 +54,23 @@ class correcao():
         questoes= 20
         prova={}
         ProcessamentoImagen(img)
+
         for p in keypoints:
-            if p.pt[0] > 22 and p.pt[0] < 80:
+            if p.pt[0] > 10 and p.pt[0] < 80:
                 # print(questoes,"-A",p.pt)
                 prova[questoes]='A'
                 questoes = (questoes-1)
-            elif p.pt[0] > 100 and p.pt[0] < 160:
+            elif p.pt[0] > 86 and p.pt[0] < 152:
                 # print(questoes,"-B",p.pt)
                 prova[questoes]='B'
                 questoes = (questoes-1)
-            elif p.pt[0] > 172 and p.pt[0] < 238:
+            elif p.pt[0] > 160 and p.pt[0] < 230:
                 prova[questoes]='C'
                 questoes = (questoes-1)
-            elif p.pt[0] > 247 and p.pt[0] < 307:
+            elif p.pt[0] > 240 and p.pt[0] < 307:
                 prova[questoes]='D'
                 questoes = (questoes-1)
-            elif p.pt[0] > 319 and p.pt[0] < 380:
+            elif p.pt[0] > 315 and p.pt[0] < 380:
                 # print(questoes,"-E-",p.pt)
                 prova[questoes]='E'
                 questoes = (questoes-1)
@@ -96,7 +102,7 @@ class correcao():
                 inscricao=inscricao+'8'
             elif p.pt[0] > 685 and p.pt[0] < 850:
                 inscricao=inscricao+'9'
-        return inscricao[::-1]
+        return inscricao[::-1].zfill(6)
     @staticmethod
     def getRespostaQestionario(img):
         questionario={}

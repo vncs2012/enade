@@ -22,6 +22,7 @@ urlpatterns =[
     url(r'^admin/', include(admin.site.urls)),
     url(r'^desempenho/',views.Desempenho),
     url(r'^getRelatorioAcademicoPeriodo/',views.relatorioAcademicoPeriodo),
+    url(r'^getQuestionario/',views.relatorioAcademicoPeriodoQ),
     url(r'^getcurso/',views.getCurso),
     url(r'^$',views.home),
 ]

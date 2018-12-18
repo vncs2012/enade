@@ -96,7 +96,8 @@ class GabaritoResposta(models.Model):
         db_table = 'tb_gabarito_resposta'
 
     def __str__(self):
-        return "Salvo com Sucesso"
+        template = '{0.nu_questao}-{0.res_questao}'
+        return template.format(self)
 
 class PeriodoAvaliativoAcademico(models.Model):
 
@@ -188,6 +189,19 @@ class QuestionarioAcademico(models.Model):
         return self.res_questionario
 
 class RelatorioAcademicos(models.Model):
+    cd_gabarito_questionario = models.AutoField(primary_key=True,editable=False)
+    nu_questionario = models.IntegerField()
+    res_questionario = models.CharField(max_length=2)
+    cd_avaliativo_academico = models.IntegerField()
+    cd_usuario = models.IntegerField()
+    class Meta:
+        managed = False
+        db_table = 'tb_gabarito_questionario'
+
+    def __unicode__(self):
+        return self.res_questionario
+
+class RelatorioAcademicosQ(models.Model):
     cd_gabarito_questionario = models.AutoField(primary_key=True,editable=False)
     nu_questionario = models.IntegerField()
     res_questionario = models.CharField(max_length=2)

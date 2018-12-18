@@ -17,51 +17,28 @@
   </head>
   <body>
     <div class="container">
-	<h4>Desempenho dos Acadêmicos do curso <strong>{{curso}} do {{periodo}}&#176;</strong></h4>
+	<h4>Questionario do curso <strong>{{curso}} do {{periodo}}&#176;</strong></h4>
         <div class="row">
-            <div class="col-8">
-                <h4 class="text-center">Resultados</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="textoCentro">Cod. Acadêmico</th>
-                            <th class="textoCentro">Acadêmico</th>
-                            <th class="textoCentro">Periodo Avaliativo</th>
-                            <th class="text-center">Acertos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {%for value in resultado%}
-                        <tr >
-                            <td class="textoCentro">{{value.nu_cod_academico}}</td>
-                            <td>{{value.no_academico}}</td>
-                            <td class="textoCentro">{{value.no_periodo_avaliativo}}</td>
-                            <td class="textoCentro">{{value.totalacertadas }}</td>
-                        </tr>
-                    {%endfor  %}
-                    </tbody>
-                </table>
-            </div>
             <div class="col-4">
-                <div style="margin:2%">
-                    <h4 class="text-center">Acertos nas questões</h4>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">total</th>
+                                <th class="textoCentro">Questão</th>
+                                <th class="textoCentro">Marcada</th>
+                                <th class="textoCentro">quantidade</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {%for value in acertadas%}
-                            <tr >
-                                <td class="textoCentro">{{value.nu_questao}}</td>
-                                <td class="textoCentro">{{value.totalacertadas}}</td>
+                        {%for value in questionario%}
+                            <tr>
+                                <td class="textoCentro">{{value.nu_questionario}}</td>
+                                <td>{{value.res_questionario}}</td>
+                                <td>{{value.total_marcada}}</td>
                             </tr>
                         {%endfor%}
                         </tbody>
                     </table>
-                </div>
+                
             </div>
         </div>
     </div>

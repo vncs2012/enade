@@ -81,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DB_NAME', 'correcao_gabarito'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', '@vncs@'),
+        'USER': os.getenv('DB_USER', 'vncs'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'vncs2012'),
         'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': '3306'
     }
@@ -173,9 +173,9 @@ JET_SIDE_MENU_ITEMS = [
 {'label': 'Enade', 'app_label': 'core', 'items': [
 {'label':'Academico','name': 'core.aluno'},
 {'label':'Curso','name': 'core.curso'},
-{'label':'Gabarito','name': 'core.gabarito'},
+{'label':'Cadastro de Gabarito','name': 'core.gabarito'},
 {'label':'Periodo Avaliativo','name': 'core.periodoavaliativo'},
-{'label':'Upload Gabarito','name': 'core.imagem',},
+{'label':'Upload Cartao resposta','name': 'core.imagem',},
 # {'label':'Analytics', 'url': 'core/imagem/multiupload/', 'url_blank': False},
 ]},
 {'label': u'Autenticacao e Autorizacao ', 'items': [
@@ -184,6 +184,7 @@ JET_SIDE_MENU_ITEMS = [
 ]},
 {'label': 'Relatorios', 'app_label': 'Relatorio', 'items': [
 {'label':'Desempenho Simulado','name': 'core.relatorioacademicos'},
+{'label':'Questionario','name': 'core.relatorioacademicosq'},
 # {'name': 'bannertype'},
 ]},
 ]

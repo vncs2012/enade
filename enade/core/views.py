@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+import pdfkit
+from django.template import Context
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string,get_template
 from xhtml2pdf import pisa
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 from core.models import Aluno,Curso
+import os
+
 
 @csrf_exempt
 def home(reques):
@@ -35,12 +38,10 @@ def Desempenho(request):
     questoes = getGabarito(mat,cd_periodo)
     resAcademico = getRespostasAcademico(mat,cd_periodo)
     respostaAcademico = desepenhoAcadmicomontar(respostas,resAcademico)
-    imagem = getImagem(mat,cd_periodo)
+    certas = desepenhoAcadmicomontarCertos(respostas,questoes)
     context = {
-    'resposta': respostas,
-    'questoes':questoes,
+    'questoes':certas,
     'resacademico' :respostaAcademico,
-    'gabarito': imagem[0],
     'academico': Aluno.objects.filter(nu_cod_academico=mat)[0].no_academico
     }
     html = render_to_string('core/desempenho.html',context)
@@ -63,16 +64,18 @@ def relatorioAcademicoPeriodo(request):
         "resultado": getRelatorioAcademicoPeriodo(cd_curso,cd_periodo),
         "curso": Curso.objects.filter(cd_curso=cd_curso)[0].no_curso,
         "acertadas": getRelatorioAcertosQuestoes(cd_curso,cd_periodo),
-        "periodo":cd_periodo
+        "periodo":cd_periodo,
+        "questionario" : getQuestionario(cd_curso,cd_periodo)
     }
-    html  = render_to_string('relatorio/relatorioAcademicoPeriodo.html',context)
-    file = open('relatoriosPDF/'+cd_periodo+'-'+cd_curso+'.pdf', "w+b")
-    pisa.CreatePDF(html.encode('utf-8'), dest=file,encoding='utf-8')
-
-    file.seek(0)
-    pdf = file.read()
-    file.close()
-    return HttpResponse(pdf, 'application/pdf')
+    template = get_template("relatorio/relatorioAcademicoPeriodo.html")
+    html = template.render(context) 
+    pdfkit.from_string(html, 'out.pdf')
+    pdf = open("out.pdf")
+    response = HttpResponse(pdf.read(), content_type='application/pdf') 
+    response['Content-Disposition'] = 'attachment; filename=output.pdf'
+    pdf.close()
+    os.remove("out.pdf")
+    return HttpResponse(response, 'application/pdf')
 
 def getRespostas(mat,cd_periodo):
     cursor = connection.cursor()
@@ -183,10 +186,56 @@ def getRelatorioAcertosQuestoes(cd_curso,cd_periodo):
             rowset.append(field)
         result.append(dict(rowset))
     return result
+    
+def getQuestionario(cd_curso,cd_periodo):
+    cursor = connection.cursor()
+    sql="SELECT gq.nu_questionario,gq.res_questionario,COUNT(gq.res_questionario) as total_marcada,no_periodo_avaliativo \
+                 from correcao_gabarito.tb_periodo_avaliativo pa\
+                    join correcao_gabarito.tb_periodo_avaliativo_has_tb_academico pha USING(cd_periodo_avaliativo)\
+                    join correcao_gabarito.tb_gabarito_questionario gq USING(cd_avaliativo_academico)\
+                    join correcao_gabarito.tb_academico a USING(cd_academico)\
+                    where pa.bo_ativo and pha.cd_periodo = "+cd_periodo+" and a.cd_curso = "+cd_curso+"\
+                    GROUP by gq.nu_questionario,gq.res_questionario,no_periodo_avaliativo\
+                    ORDER by gq.nu_questionario"
+    cursor.execute(sql)
+    fieldnames = [name[0] for name in cursor.description]
+    result =[]
+    for row in cursor.fetchall():
+        rowset=[]
+        for field in zip(fieldnames,row):
+            rowset.append(field)
+        result.append(dict(rowset))
+    return result
 
 def desepenhoAcadmicomontar(certas,respostas):
     for k,certa in enumerate(certas):
         for kk,resposta in enumerate(respostas):
             if ((certa.get('nu_questao',k) == resposta.get('nu_questao',kk)) and (certa.get('res_questao',k) == resposta.get('res_questao',kk))):
-                dict(dic0.items() + dic1.items())
+                respostas[kk].update({'erro':'table-success'})
     return respostas
+
+def desepenhoAcadmicomontarCertos(certas,respostas):
+    for k,certa in enumerate(certas):
+        for kk,resposta in enumerate(respostas):
+            if ((certa.get('nu_questao',k) == resposta.get('nu_questao',kk)) and (certa.get('res_questao',k) == resposta.get('res_questao',kk))):
+                respostas[kk].update({'erro':'table-success'})
+    return respostas
+
+@csrf_exempt
+def relatorioAcademicoPeriodoQ(request):
+    cd_curso = request.POST.get('cd_curso')
+    cd_periodo = request.POST.get('cd_periodo')
+    context = {
+        "curso": Curso.objects.filter(cd_curso=cd_curso)[0].no_curso,
+        "periodo":cd_periodo,
+        "questionario" : getQuestionario(cd_curso,cd_periodo)
+    }
+    template = get_template("relatorio/relatorioAcademicoPeriodoQ.html")
+    html = template.render(context) 
+    pdfkit.from_string(html, 'out.pdf')
+    pdf = open("out.pdf")
+    response = HttpResponse(pdf.read(), content_type='application/pdf') 
+    response['Content-Disposition'] = 'attachment; filename=output.pdf'
+    pdf.close()
+    os.remove("out.pdf")
+    return HttpResponse(response, 'application/pdf')
